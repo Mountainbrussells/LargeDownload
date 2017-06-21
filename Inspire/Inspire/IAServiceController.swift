@@ -25,9 +25,6 @@ class IAServiceController: NSObject {
             else {
                 let dataString = String(data: data!, encoding: .utf8)
                 let dataArray = dataString?.components(separatedBy: "\n")
-//                let string1 = dataArray![0] as String
-//                let string = String(string1.characters.prefix(9))
-//                print(string)
                 let returnArray = self.sequenceArray(dataArray!)
                 completion(returnArray, nil)
                 
@@ -36,69 +33,6 @@ class IAServiceController: NSObject {
         task.resume()
         session.finishTasksAndInvalidate()
     }
-    
-//    func getRankedSequences(completion: @escaping (_ gridArray: Array<RankedSequence>?, _ error: Error?) -> Void) {
-//        
-//        downloadLog { (dataArray, error) in
-//            if error != nil {
-//                completion(nil, error)
-//            } else {
-//                var currentUser = ""
-//                var sequenceArray = [Array<String>]()
-//                if let data = dataArray {
-//                    // Go through array while there are items
-//                    var mutableData = data
-//                    while mutableData.count > 0 {
-//                        var currentSequence = [String]()
-//                        let string0 = mutableData[0] as String
-//                        currentUser = String(string0.characters.prefix(9))
-//                        for string in mutableData {
-//                            if string != "" {
-//                                let requestArray = string.components(separatedBy: " ")
-//                                let user = requestArray[0] as String
-//                                let page = requestArray[6] as String
-//                                if user == currentUser {
-//                                    currentSequence.append(page)
-//                                    if currentSequence.count == 3{
-//                                        break
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        if currentSequence.count == 3 {
-//                            sequenceArray.append(currentSequence)
-//                        }
-//                        mutableData.remove(at: 0)
-//                    }
-//                    let returnArray = self.rankArray(sequenceArray)
-//                    // let returnArray1 = self.rankedArray(sequenceArray)
-//                    completion(returnArray, nil)
-//                }
-//                completion(nil, nil)
-//            }
-//        }
-//    }
-    
-//    private func rankedArray(_ array:Array<Array<String>>) -> Array<RankedSequence> {
-//        var rankedArray = [RankedSequence]()
-//        var sequenceArray = array
-//        while sequenceArray.count > 0 {
-//            var count = 0
-//            let currentSequence = sequenceArray[0]
-//            for (index, sequence) in sequenceArray.enumerated().reversed() {
-//                if sequence == currentSequence {
-//                    count = count + 1
-//                    sequenceArray.remove(at: index)
-//                }
-//            }
-//            let rankedSequence = RankedSequence()
-//            rankedSequence.sequence = currentSequence
-//            rankedSequence.numberOfInstances = count
-//            rankedArray.append(rankedSequence.copy() as! RankedSequence)
-//        }
-//        rankedArray.sort { $0.numberOfInstances > $1.numberOfInstances }
-//        return rankedArray
-//    }
     
     func sequenceArray(_ array: Array<String>) -> Array<RankedSequence> {
         var currentUser = ""
@@ -156,35 +90,6 @@ class IAServiceController: NSObject {
         let sortedArray = rankedArray.sorted { $0.numberOfInstances > $1.numberOfInstances }
         rankedArray = []
         return sortedArray
-    }
-}
-
-
-extension Array {
-    mutating func rankedArray() -> Array<RankedSequence> {
-        var rankedArray = [RankedSequence]()
-       
-        while self.count > 0 {
-            var count = 0
-            let currentSequence = self[0]  as! Array<String>
-            for (index, sequence) in self.enumerated().reversed() {
-                if sequence as! Array<String> == currentSequence {
-                    count = count + 1
-                    self.remove(at: index)
-                }
-            }
-            let rankedSequence = RankedSequence()
-            rankedSequence.sequence = currentSequence
-            rankedSequence.numberOfInstances = count
-            rankedArray.append(rankedSequence)
-        }
-        rankedArray.sort { $0.numberOfInstances > $1.numberOfInstances }
-        return rankedArray
-    }
-    
-    class RankedSequence {
-        var sequence: Array<String> = []
-        var numberOfInstances: Int = 0
     }
 }
 
