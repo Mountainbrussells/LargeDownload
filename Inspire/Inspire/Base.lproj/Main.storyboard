@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,36 +21,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-cA-Pdu">
-                                <rect key="frame" x="16" y="0.0" width="343" height="647"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Wo-bx-2S1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zfX-9S-tri">
-                                    <size key="itemSize" width="61" height="65"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4XI-nT-MkG">
+                                    <size key="itemSize" width="304" height="101"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankCell" id="5yp-gD-9OC">
-                                        <rect key="frame" x="0.0" y="0.0" width="61" height="65"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sequenceCell" id="bcW-gG-Y8T">
+                                        <rect key="frame" x="35.5" y="0.0" width="304" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="61" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Q6G-tk-3wL"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="NqR-8K-6od"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="bzJ-cA-Pdu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="P87-OP-E6p"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bzJ-cA-Pdu" secondAttribute="bottom" constant="20" id="YBs-dq-H5q"/>
-                            <constraint firstItem="bzJ-cA-Pdu" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="e2M-8g-5lR"/>
-                            <constraint firstItem="bzJ-cA-Pdu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="eNW-Nh-wvN"/>
+                            <constraint firstItem="7Wo-bx-2S1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MLM-4E-OEm"/>
+                            <constraint firstItem="7Wo-bx-2S1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MjJ-2M-sJO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Wo-bx-2S1" secondAttribute="bottom" id="d3b-Vo-iWt"/>
+                            <constraint firstAttribute="trailing" secondItem="7Wo-bx-2S1" secondAttribute="trailing" id="ddQ-fc-0ao"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Page Sequence" id="486-B3-4SC"/>
+                    <connections>
+                        <outlet property="collectionView" destination="7Wo-bx-2S1" id="oeK-3g-Fca"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

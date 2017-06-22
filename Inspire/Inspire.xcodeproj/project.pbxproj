@@ -14,6 +14,9 @@
 		C994941A1EFB08EC00A0CA6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C99494181EFB08EC00A0CA6A /* LaunchScreen.storyboard */; };
 		C99494221EFB091E00A0CA6A /* IAServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99494211EFB091E00A0CA6A /* IAServiceController.swift */; };
 		C99494241EFB092800A0CA6A /* RankedSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99494231EFB092800A0CA6A /* RankedSequence.swift */; };
+		C994942B1EFC59B400A0CA6A /* IADataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C994942A1EFC59B400A0CA6A /* IADataSource.swift */; };
+		C99494301EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C994942E1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift */; };
+		C99494311EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C994942F1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		C994941B1EFB08EC00A0CA6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C99494211EFB091E00A0CA6A /* IAServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAServiceController.swift; sourceTree = "<group>"; };
 		C99494231EFB092800A0CA6A /* RankedSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankedSequence.swift; sourceTree = "<group>"; };
+		C994942A1EFC59B400A0CA6A /* IADataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IADataSource.swift; path = ../IADataSource.swift; sourceTree = "<group>"; };
+		C994942E1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IACollectionCellCollectionViewCell.swift; path = ../IACollectionCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		C994942F1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IACollectionCellCollectionViewCell.xib; path = ../IACollectionCellCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +66,14 @@
 			children = (
 				C994940F1EFB08EC00A0CA6A /* AppDelegate.swift */,
 				C99494111EFB08EC00A0CA6A /* ViewController.swift */,
+				C994942E1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift */,
+				C994942F1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib */,
 				C99494131EFB08EC00A0CA6A /* Main.storyboard */,
 				C99494161EFB08EC00A0CA6A /* Assets.xcassets */,
 				C99494181EFB08EC00A0CA6A /* LaunchScreen.storyboard */,
 				C99494211EFB091E00A0CA6A /* IAServiceController.swift */,
 				C99494231EFB092800A0CA6A /* RankedSequence.swift */,
+				C994942A1EFC59B400A0CA6A /* IADataSource.swift */,
 				C994941B1EFB08EC00A0CA6A /* Info.plist */,
 			);
 			path = Inspire;
@@ -130,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C99494311EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib in Resources */,
 				C994941A1EFB08EC00A0CA6A /* LaunchScreen.storyboard in Resources */,
 				C99494171EFB08EC00A0CA6A /* Assets.xcassets in Resources */,
 				C99494151EFB08EC00A0CA6A /* Main.storyboard in Resources */,
@@ -144,8 +154,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C99494121EFB08EC00A0CA6A /* ViewController.swift in Sources */,
+				C994942B1EFC59B400A0CA6A /* IADataSource.swift in Sources */,
 				C99494241EFB092800A0CA6A /* RankedSequence.swift in Sources */,
 				C99494101EFB08EC00A0CA6A /* AppDelegate.swift in Sources */,
+				C99494301EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift in Sources */,
 				C99494221EFB091E00A0CA6A /* IAServiceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +326,7 @@
 				C99494201EFB08EC00A0CA6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

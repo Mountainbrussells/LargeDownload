@@ -11,6 +11,8 @@ import Foundation
 class IAServiceController: NSObject {
     let baseURL = "http://dev.inspiringapps.com/Files/IAChallenge/30E02AAA-B947-4D4B-8FB6-9C57C43872A9/Apache.log".addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
     
+    let dataSource = IADataSource.sharedInstance
+    
     func downloadLog(completion: @escaping (_ array: Array<RankedSequence>?, _ error: Error?) -> Void) {
         let url = URL(string: baseURL!)
         
@@ -25,19 +27,20 @@ class IAServiceController: NSObject {
             else {
                 let dataString = String(data: data!, encoding: .utf8)
                 let dataArray = dataString?.components(separatedBy: "\n")
-                let returnArray = self.sequenceArray(dataArray!)
-                completion(returnArray, nil)
-                
+                self.sequenceArray(dataArray!, completion:{ (array) -> Void in
+                    completion(array, nil)
+                })
             }
         })
         task.resume()
         session.finishTasksAndInvalidate()
     }
     
-    func sequenceArray(_ array: Array<String>) -> Array<RankedSequence> {
+    func sequenceArray(_ array: Array<String>, completion: @escaping (_ array: Array<RankedSequence>?) -> Void ) {
         var currentUser = ""
-        var sequenceArray = [Array<String>]()
-        
+//        var sequenceArray = [Array<String>]()
+        var rankedArray = [RankedSequence]()
+        DispatchQueue.global(qos: .background).async {
             var mutableData = array
             while mutableData.count > 0 {
                 var currentSequence = [String]()
@@ -51,19 +54,39 @@ class IAServiceController: NSObject {
                         if user == currentUser {
                             currentSequence.append(page)
                             if currentSequence.count == 3{
+                                var alreadyRanked = false
+                                for rankedSequence in self.dataSource.dataArray {
+                                    if currentSequence == rankedSequence.sequence {
+                                        rankedSequence.numberOfInstances = rankedSequence.numberOfInstances + 1
+                                        alreadyRanked = true
+                                        break
+                                    }
+                                }
+                                if alreadyRanked == false {
+                                    let rankedSequence = RankedSequence()
+                                    rankedSequence.sequence = currentSequence
+                                    rankedSequence.numberOfInstances = rankedSequence.numberOfInstances + 1
+                                    self.dataSource.dataArray.append(rankedSequence)
+                                }
+
                                 break
                             }
                         }
                     }
                 }
-                if currentSequence.count == 3 {
-                    sequenceArray.append(currentSequence)
-                }
+//                if currentSequence.count == 3 {
+//                    sequenceArray.append(currentSequence)
+//                }
                 mutableData.remove(at: 0)
             }
-            let returnArray = self.rankArray(sequenceArray)
-            // let returnArray1 = self.rankedArray(sequenceArray)
-            return returnArray
+//            let returnArray = self.rankArray(sequenceArray)
+            self.dataSource.dataArray = self.dataSource.dataArray.sorted { $0.numberOfInstances > $1.numberOfInstances }
+            DispatchQueue.main.async {
+                completion(self.dataSource.dataArray)
+            }
+            
+        }
+        
     }
     
     

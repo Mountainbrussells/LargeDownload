@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Inspire/IAServiceController.swift"
-            timestampString = "519774808.026526"
+            timestampString = "519855328.363963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "downloadLog(completion:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "sequenceArray(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
