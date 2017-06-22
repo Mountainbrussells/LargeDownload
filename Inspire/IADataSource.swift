@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol IADataSourceDelegate {
+    func sequenceAdded()
+}
+
 
 class IADataSource {
-    
+    var delegate:IADataSourceDelegate! = nil
     
     class var sharedInstance: IADataSource {
         struct Static {
@@ -20,4 +24,13 @@ class IADataSource {
     }
     
     var dataArray: Array<RankedSequence> = [RankedSequence]()
+    
+    func sendDataAvailableNotice() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataAvailable"), object: self)
+    }
+    
+    func addSequence(_ sequence: RankedSequence) {
+        self.dataArray.append(sequence)
+        delegate!.sequenceAdded()
+    }
 }

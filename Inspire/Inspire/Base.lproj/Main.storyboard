@@ -35,7 +35,7 @@
                                         <rect key="frame" x="35.5" y="0.0" width="304" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="305" height="101"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="304" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>
@@ -45,18 +45,47 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="NqR-8K-6od"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmH-hV-ata">
+                                <rect key="frame" x="0.0" y="64" width="375" height="78"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTQ-9i-TYa">
+                                        <rect key="frame" x="104" y="21" width="166" height="37"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Processing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqU-gL-HeU">
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="37"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rTh-zo-iRT">
+                                                <rect key="frame" x="129" y="0.0" width="37" height="37"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1769456945" green="0.5818329632" blue="0.1235834608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ZTQ-9i-TYa" firstAttribute="centerY" secondItem="ZmH-hV-ata" secondAttribute="centerY" id="MUC-3E-JG4"/>
+                                    <constraint firstItem="ZTQ-9i-TYa" firstAttribute="centerX" secondItem="ZmH-hV-ata" secondAttribute="centerX" id="PZx-h1-OzW"/>
+                                    <constraint firstAttribute="height" constant="78" id="yXB-Jc-40R"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ZmH-hV-ata" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HMq-7k-kCn"/>
                             <constraint firstItem="7Wo-bx-2S1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MLM-4E-OEm"/>
                             <constraint firstItem="7Wo-bx-2S1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MjJ-2M-sJO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Wo-bx-2S1" secondAttribute="bottom" id="d3b-Vo-iWt"/>
+                            <constraint firstItem="ZmH-hV-ata" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dB0-9b-KO8"/>
                             <constraint firstAttribute="trailing" secondItem="7Wo-bx-2S1" secondAttribute="trailing" id="ddQ-fc-0ao"/>
+                            <constraint firstAttribute="trailing" secondItem="ZmH-hV-ata" secondAttribute="trailing" id="ex8-L4-dxB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Page Sequence" id="486-B3-4SC"/>
                     <connections>
                         <outlet property="collectionView" destination="7Wo-bx-2S1" id="oeK-3g-Fca"/>
+                        <outlet property="loadingIndicator" destination="ZmH-hV-ata" id="ei1-Mn-1qC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
