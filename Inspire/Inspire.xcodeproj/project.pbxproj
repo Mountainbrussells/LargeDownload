@@ -64,27 +64,59 @@
 		C994940E1EFB08EC00A0CA6A /* Inspire */ = {
 			isa = PBXGroup;
 			children = (
-				C99494321EFD83E500A0CA6A /* classes */,
 				C994940F1EFB08EC00A0CA6A /* AppDelegate.swift */,
-				C99494111EFB08EC00A0CA6A /* ViewController.swift */,
-				C994942E1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift */,
-				C994942F1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib */,
-				C99494131EFB08EC00A0CA6A /* Main.storyboard */,
 				C99494161EFB08EC00A0CA6A /* Assets.xcassets */,
-				C99494181EFB08EC00A0CA6A /* LaunchScreen.storyboard */,
-				C99494211EFB091E00A0CA6A /* IAServiceController.swift */,
-				C994942A1EFC59B400A0CA6A /* IADataSource.swift */,
+				C99494321EFD83E500A0CA6A /* customclasses */,
+				C99494331EFD845500A0CA6A /* controllers */,
+				C99494351EFD84E800A0CA6A /* datasource */,
 				C994941B1EFB08EC00A0CA6A /* Info.plist */,
+				C99494361EFD850200A0CA6A /* storyboards */,
+				C99494341EFD847200A0CA6A /* viewcontrollers */,
 			);
 			path = Inspire;
 			sourceTree = "<group>";
 		};
-		C99494321EFD83E500A0CA6A /* classes */ = {
+		C99494321EFD83E500A0CA6A /* customclasses */ = {
 			isa = PBXGroup;
 			children = (
 				C99494231EFB092800A0CA6A /* RankedSequence.swift */,
+				C994942E1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift */,
+				C994942F1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.xib */,
 			);
-			name = classes;
+			name = customclasses;
+			sourceTree = "<group>";
+		};
+		C99494331EFD845500A0CA6A /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C99494211EFB091E00A0CA6A /* IAServiceController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		C99494341EFD847200A0CA6A /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				C99494111EFB08EC00A0CA6A /* ViewController.swift */,
+			);
+			name = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		C99494351EFD84E800A0CA6A /* datasource */ = {
+			isa = PBXGroup;
+			children = (
+				C994942A1EFC59B400A0CA6A /* IADataSource.swift */,
+			);
+			name = datasource;
+			sourceTree = "<group>";
+		};
+		C99494361EFD850200A0CA6A /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C99494181EFB08EC00A0CA6A /* LaunchScreen.storyboard */,
+				C99494131EFB08EC00A0CA6A /* Main.storyboard */,
+			);
+			name = storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
