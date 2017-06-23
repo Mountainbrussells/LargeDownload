@@ -64,6 +64,7 @@
 		C994940E1EFB08EC00A0CA6A /* Inspire */ = {
 			isa = PBXGroup;
 			children = (
+				C99494321EFD83E500A0CA6A /* classes */,
 				C994940F1EFB08EC00A0CA6A /* AppDelegate.swift */,
 				C99494111EFB08EC00A0CA6A /* ViewController.swift */,
 				C994942E1EFC5F6D00A0CA6A /* IACollectionCellCollectionViewCell.swift */,
@@ -72,11 +73,18 @@
 				C99494161EFB08EC00A0CA6A /* Assets.xcassets */,
 				C99494181EFB08EC00A0CA6A /* LaunchScreen.storyboard */,
 				C99494211EFB091E00A0CA6A /* IAServiceController.swift */,
-				C99494231EFB092800A0CA6A /* RankedSequence.swift */,
 				C994942A1EFC59B400A0CA6A /* IADataSource.swift */,
 				C994941B1EFB08EC00A0CA6A /* Info.plist */,
 			);
 			path = Inspire;
+			sourceTree = "<group>";
+		};
+		C99494321EFD83E500A0CA6A /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				C99494231EFB092800A0CA6A /* RankedSequence.swift */,
+			);
+			name = classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

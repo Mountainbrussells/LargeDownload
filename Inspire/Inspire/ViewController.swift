@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, IADataSourceDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var dataSource = IADataSource.sharedInstance
 
@@ -19,20 +19,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource.delegate = self
-        
         collectionView!.register(UINib(nibName: "IACollectionCellCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         // Do any additional setup after loading the view, typically from a nib.
         let serviceController = IAServiceController()
         
-        serviceController.downloadLog{ (array, error) in
+        serviceController.downloadLog(completion: { (array, error) in
             if error != nil {
-                
+            
             } else {
                 self.reloadData()
                 self.loadingIndicator.isHidden = true
             }
-        }
+        })
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadData), name: NSNotification.Name(rawValue: "dataAvailable"), object: nil)
     }
@@ -46,9 +44,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-    }
-    
-    func sequenceAdded() {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

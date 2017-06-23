@@ -27,7 +27,7 @@ class IAServiceController: NSObject {
             else {
                 let dataString = String(data: data!, encoding: .utf8)
                 let dataArray = dataString?.components(separatedBy: "\n")
-                self.sequenceArray(dataArray!, completion:{ (array) -> Void in
+                self.fillDataSource(dataArray!, completion:{ (array) -> Void in
                     completion(array, nil)
                 })
             }
@@ -36,50 +36,58 @@ class IAServiceController: NSObject {
         session.finishTasksAndInvalidate()
     }
     
-    func sequenceArray(_ array: Array<String>, completion: @escaping (_ array: Array<RankedSequence>?) -> Void ) {
-        var currentUser = ""
+    func fillDataSource(_ array: Array<String>, completion: @escaping (_ array: Array<RankedSequence>?) -> Void ) {
         DispatchQueue.global(qos: .background).async {
             var mutableData = array
+            var userDict = [String:Array<String>]()
+            
+            // create dictionary of pages arrays that users visited
+            for string in mutableData {
+                if string != "" {
+                    let requestArray = string.components(separatedBy: " ")
+                    let user = requestArray[0] as String
+                    let page = requestArray[6] as String
+                    if (userDict[user] != nil) {
+                        userDict[user]!.append(page)
+                    } else {
+                        var userPageArray = [String]()
+                        userPageArray.append(page)
+                        userDict.updateValue(userPageArray, forKey: user)
+                    }
+                }
+            }
+            mutableData = []
+            
             var counter = 0
-            while mutableData.count > 0 {
-                var currentSequence = [String]()
-                let string0 = mutableData[0] as String
-                currentUser = String(string0.characters.prefix(9))
-                for string in mutableData {
-                    if string != "" {
-                        let requestArray = string.components(separatedBy: " ")
-                        let user = requestArray[0] as String
-                        let page = requestArray[6] as String
-                        if user == currentUser {
-                            currentSequence.append(page)
-                            if currentSequence.count == 3 {
-                                var alreadyRanked = false
-                                for rankedSequence in self.dataSource.dataArray {
-                                    if currentSequence == rankedSequence.sequence {
-                                        rankedSequence.numberOfInstances = rankedSequence.numberOfInstances + 1
-                                        alreadyRanked = true
-                                        break
-                                    }
-                                }
-                                if alreadyRanked == false {
-                                    let rankedSequence = RankedSequence()
-                                    rankedSequence.sequence = currentSequence
-                                    rankedSequence.numberOfInstances = rankedSequence.numberOfInstances + 1
-                                    self.dataSource.addSequence(rankedSequence)
-                                }
-                                break
-                            }
-                            
+            // Iterate through user's visited pages arrays in  dictionary
+            for (_,pages) in userDict {
+                // got through pages visited array
+                for (index, _) in pages.enumerated(){
+                    // Create sequence
+                    var sequenceArray = [String]()
+                    if pages.indices.contains(index + 2) {
+                        sequenceArray.append(pages[index])
+                        sequenceArray.append(pages[index + 1])
+                        sequenceArray.append(pages[index + 2])
+                    
+                        // add to or update datasource with sequence
+                        if self.dataSource.dataArray.contains(where: { rankedSequence in rankedSequence.sequence == sequenceArray }) {
+                            let rankedArray = self.dataSource.dataArray.first(where: { $0.sequence == sequenceArray })
+                            rankedArray?.numberOfInstances = (rankedArray?.numberOfInstances)! + 1
+                        } else {
+                            let rankedSequence = RankedSequence()
+                            rankedSequence.sequence = sequenceArray
+                            rankedSequence.numberOfInstances = rankedSequence.numberOfInstances + 1
+                            self.dataSource.addSequence(rankedSequence)
+                        }
+                        counter = counter + 1
+                        if counter == 500 {
+                            self.dataSource.dataArray = self.dataSource.dataArray.sorted { $0.numberOfInstances > $1.numberOfInstances }
+                            self.dataSource.sendDataAvailableNotice()
+                            counter = 0
                         }
                     }
                 }
-                counter = counter + 1
-                if counter == 500 {
-                    self.dataSource.dataArray = self.dataSource.dataArray.sorted { $0.numberOfInstances > $1.numberOfInstances }
-                    self.dataSource.sendDataAvailableNotice()
-                    counter = 0
-                }
-                mutableData.remove(at: 0)
             }
             self.dataSource.dataArray = self.dataSource.dataArray.sorted { $0.numberOfInstances > $1.numberOfInstances }
             DispatchQueue.main.async {
